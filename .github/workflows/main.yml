@@ -15,7 +15,7 @@ jobs:
   build:
     strategy:
       matrix:
-        os: [ubuntu-latest, windows-latest, macos-latest]
+        os: [windows-latest]
 
     runs-on: ${{ matrix.os }}
 
@@ -32,7 +32,7 @@ jobs:
         run: pip install -r requirements.txt
 
       - name: Build executable
-        run: pyinstaller --onefile vclock.py
+        run: pyinstaller --onefile --noconsole vclock.py
 
       - name: Rename executable
         run: |
@@ -67,9 +67,6 @@ jobs:
       - name: List downloaded files (Debugging)
         run: ls -R
 
-      - name: Make files executable (Linux/Mac)
-        run: chmod +x vclock-* || true
-
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         with:
@@ -78,6 +75,4 @@ jobs:
           draft: false
           prerelease: false
           files: |
-            vclock-linux
             vclock.exe
-            vclock-macos
