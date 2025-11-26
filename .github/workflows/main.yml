@@ -75,5 +75,5 @@ jobs:
           prerelease: false
           files: |
             vclock-linux
-            vclock-windows.exe
-            app-macos
+            vclock.exe
+            vclock-macos
